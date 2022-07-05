@@ -29,6 +29,9 @@ public class MainFrame extends JFrame implements ActionListener {
     private int abgleichCount = 3;
     private int x1 = 0;
     private int y1 = 0;
+    private int anzZüge;
+    private int kartenPlayerOne = 0;
+    private int kartenPlayerTwo = 0;
 
 
     public void initialize() {
@@ -97,6 +100,7 @@ public class MainFrame extends JFrame implements ActionListener {
         System.out.println(split[0]);
         System.out.println(split[1]);
 
+
         if (abgleichCount % 2 == 1) {
             for (int r = 0; r < 5; r++) {
                 for (int c = 0; c < 4; c++) {
@@ -114,6 +118,7 @@ public class MainFrame extends JFrame implements ActionListener {
             ((JButton) e.getSource()).setContentAreaFilled(true);
 
         } else {
+            anzZüge++;
             buttons[Integer.parseInt(split[0])][Integer.parseInt(split[1])].setIcon(icons[Integer.parseInt(split[0])][Integer.parseInt(split[1])]);
             int abgleichZwei = (((JButton) e.getSource()).getIcon()).getIconHeight();
             System.out.println(abgleichEins + " / " + abgleichZwei);
@@ -129,9 +134,21 @@ public class MainFrame extends JFrame implements ActionListener {
                             buttons[r][c].setVisible(false);
                         }
                     }
-                    System.out.println();
+                }
+
+                System.out.println();
+                if(anzZüge % 2 == 0){
+                    kartenPlayerTwo++;
+                }else{
+                    kartenPlayerOne++;
                 }
             }
+        }
+        if(kartenPlayerOne + kartenPlayerTwo == 10){
+            System.out.println(playerOne + ": " + kartenPlayerOne);
+            System.out.println(playerTwo + ": " + kartenPlayerTwo);
+            System.out.println("Anzahl Züge: " + anzZüge);
+            System.exit(0);
         }
     }
 
