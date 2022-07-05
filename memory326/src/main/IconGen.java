@@ -1,7 +1,10 @@
 package main;
 
+import javax.management.Descriptor;
 import javax.swing.*;
 import java.awt.*;
+
+import static com.sun.beans.introspect.PropertyInfo.Name.description;
 
 public class IconGen {
     public IconGen(String[] pictures, JButton[][] buttons, Icon[][] icons) {
@@ -10,7 +13,7 @@ public class IconGen {
             for (int col = 0; col < icons[row].length; col++) {
                 ImageIcon icon = new ImageIcon(String.valueOf(pictures[i]));
                 Image img = icon.getImage();
-                Image newImg = img.getScaledInstance(buttons[0][0].getWidth(), buttons[0][0].getHeight(), Image.SCALE_SMOOTH);
+                Image newImg = img.getScaledInstance(buttons[0][0].getWidth(), buttons[0][0].getHeight() + i, Image.SCALE_SMOOTH);
                 icon = new ImageIcon(newImg);
                 icons[row][col] = icon;
                 i++;

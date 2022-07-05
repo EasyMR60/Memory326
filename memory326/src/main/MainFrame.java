@@ -2,6 +2,7 @@ package main;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.SQLOutput;
 import javax.swing.*;
 
 public class MainFrame extends JFrame implements ActionListener {
@@ -24,8 +25,10 @@ public class MainFrame extends JFrame implements ActionListener {
             {6, 6, 7, 7, 8},
             {8, 9, 9, 10, 10}};
     //Kartenvergleiche
-    private Icon abgleichEins;
+    private int abgleichEins;
     private int abgleichCount = 3;
+    private int x1 = 0;
+    private int y1 = 0;
 
 
     public void initialize() {
@@ -93,28 +96,33 @@ public class MainFrame extends JFrame implements ActionListener {
 
         System.out.println(split[0]);
         System.out.println(split[1]);
-        System.out.println(((JButton) e.getSource()).getName());
+
         if (abgleichCount % 2 == 1) {
             for (int r = 0; r < 5; r++) {
                 for (int c = 0; c < 4; c++) {
                     buttons[r][c].setIcon(null);
                 }
             }
+
+            x1 = Integer.parseInt(split[0]);
+            y1 = Integer.parseInt(split[1]);
+
             buttons[Integer.parseInt(split[0])][Integer.parseInt(split[1])].setIcon(icons[Integer.parseInt(split[0])][Integer.parseInt(split[1])]);
-            abgleichEins = ((JButton) e.getSource()).getIcon();
+            abgleichEins = (((JButton) e.getSource()).getIcon()).getIconHeight();
             System.out.println((JButton) e.getSource());
             abgleichCount++;
             ((JButton) e.getSource()).setContentAreaFilled(true);
 
         } else {
             buttons[Integer.parseInt(split[0])][Integer.parseInt(split[1])].setIcon(icons[Integer.parseInt(split[0])][Integer.parseInt(split[1])]);
-            Icon abgleichZwei = ((JButton) e.getSource()).getIcon();
+            int abgleichZwei = (((JButton) e.getSource()).getIcon()).getIconHeight();
             System.out.println(abgleichEins + " / " + abgleichZwei);
             abgleichCount++;
-
+            (((JButton) e.getSource()).getIcon()).getIconHeight();
             ((JButton) e.getSource()).setContentAreaFilled(true);
-            if (abgleichEins.equals(abgleichZwei)) {
+            if (abgleichEins == abgleichZwei) {
                 ((JButton) e.getSource()).setVisible(false);
+                buttons[x1][y1].setVisible(false);
                 for (int r = 0; r < 5; r++) {
                     for (int c = 0; c < 4; c++) {
                         if (buttons[r][c].getIcon().equals(abgleichZwei)) {
