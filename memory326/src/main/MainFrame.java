@@ -125,14 +125,13 @@ public class MainFrame extends JFrame implements ActionListener {
                 buttons[x1][y1].setVisible(false);
                 for (int r = 0; r < 5; r++) {
                     for (int c = 0; c < 4; c++) {
-                        if (buttons[r][c].getIcon().equals(abgleichZwei)) {
+                        if (buttons[r][c].getIcon() != null) {
                             buttons[r][c].setVisible(false);
                         }
                     }
                     System.out.println();
                 }
             }
-
         }
     }
 
