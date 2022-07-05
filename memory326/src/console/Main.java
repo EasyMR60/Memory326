@@ -12,10 +12,12 @@ public class Main {
     public static String nameTwo = "";
     public static int pointsTwo= 0;
 
+
     public static void main(String[] args) {
 
-        String botEingabe = "";
-        playerName(nameOne, nameTwo);
+        String[] array = playerName();
+        nameOne = array[0];
+        nameTwo = array[1];
         checker();
         Game.game(checker, Karten); // calls the game
     }}
